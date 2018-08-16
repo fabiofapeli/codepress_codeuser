@@ -1,0 +1,15 @@
+Language: php
+
+php: #possibilidade de trabalhar com várias versões do php
+ - '5.5' #última versão disponível do 5.5
+ #- '5.6' build para cada versão
+ #- '7.0' vamos iniciar apenas com a 5.5
+
+before_install: #executar comandos antes da instalação
+ - composer selfupdate #podemos adicionar quantos comandos desejarmos
+
+install: #prepara o ambiente da aplicação
+ - composer install
+
+script: #realização de testes
+  - vendor/bin/phpunit
