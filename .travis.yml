@@ -5,11 +5,21 @@ php: #possibilidade de trabalhar com várias versões do php
  #- '5.6' build para cada versão
  #- '7.0' vamos iniciar apenas com a 5.5
 
+env:
+  global:
+    - 'DB_CONNECTION=mysql' 
+    - 'DB_HOST=localhost' 
+    - 'DB_DATABASE=codeuser' 
+    - 'DB_USERNAME=travis'  #pode ser qualquer nome, não é necessário informar senha
+
 before_install: #executar comandos antes da instalação
  - composer selfupdate #podemos adicionar quantos comandos desejarmos
 
 install: #prepara o ambiente da aplicação
  - composer install
+
+before_script:
+  - mysql -u travis -e "create database codeuser;"
 
 script: #realização de testes
   - vendor/bin/phpunit
